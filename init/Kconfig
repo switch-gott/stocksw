@@ -1218,7 +1218,7 @@ config SCHED_QHMP
 	  balancing.
 
 config CHECKPOINT_RESTORE
-	bool "Checkpoint/restore support" if EXPERT
+	bool "Checkpoint/restore support"
 	default n
 	help
 	  Enables additional kernel features in a sake of checkpoint/restore.
@@ -1229,7 +1229,7 @@ config CHECKPOINT_RESTORE
 	  If unsure, say N here.
 
 menuconfig NAMESPACES
-	bool "Namespaces support" if EXPERT
+	bool "Namespaces support"
 	default !EXPERT
 	help
 	  Provides the way to make tasks work with different objects using
@@ -1443,8 +1443,6 @@ config BPF
 
 menuconfig EXPERT
 	bool "Configure standard kernel features (expert users)"
-	# Unhide debug options, to make the on-by-default options visible
-	select DEBUG_KERNEL
 	help
 	  This option allows certain base kernel options and settings
           to be disabled or tweaked. This is for specialized
