@@ -359,7 +359,6 @@ static int kgsl_mem_entry_track_gpuaddr(struct kgsl_device *device,
 	return kgsl_mmu_get_gpuaddr(pagetable, &entry->memdesc);
 }
 
-
 /* Commit the entry to the process so it can be accessed by other operations */
 static void kgsl_mem_entry_commit_process(struct kgsl_mem_entry *entry)
 {
@@ -423,7 +422,6 @@ static int kgsl_mem_entry_attach_process(struct kgsl_device *device,
 		entry->memdesc.size);
 
 	return ret;
-
 }
 
 /* Detach a memory entry from a process and unmap it from the MMU */
@@ -451,8 +449,8 @@ static void kgsl_mem_entry_detach_process(struct kgsl_mem_entry *entry)
 
 	spin_unlock(&entry->priv->mem_lock);
 
-	kgsl_mmu_put_gpuaddr(&entry->memdesc);		
-	
+	kgsl_mmu_put_gpuaddr(&entry->memdesc);
+
 	kgsl_process_private_put(entry->priv);
 
 	entry->priv = NULL;
@@ -2109,7 +2107,7 @@ static int kgsl_setup_anon_useraddr(struct kgsl_pagetable *pagetable,
 		/* Register the address in the database */
 		ret = kgsl_mmu_set_svm_region(pagetable,
 			(uint64_t) entry->memdesc.useraddr, (uint64_t) size);
-	
+
 		if (ret)
 			return ret;
 
@@ -2381,10 +2379,9 @@ long kgsl_ioctl_gpuobj_import(struct kgsl_device_private *dev_priv,
 
 	trace_kgsl_mem_map(entry, fd);
 	kgsl_mem_entry_commit_process(entry);
-	
+
 	/* put the extra refcount for kgsl_mem_entry_create() */
 	kgsl_mem_entry_put(entry);
-
 	return 0;
 
 unmap:
@@ -2691,7 +2688,7 @@ long kgsl_ioctl_map_user_mem(struct kgsl_device_private *dev_priv,
 	trace_kgsl_mem_map(entry, param->fd);
 
 	kgsl_mem_entry_commit_process(entry);
-	
+
 	/* put the extra refcount for kgsl_mem_entry_create() */
 	kgsl_mem_entry_put(entry);
 	return result;
@@ -3135,10 +3132,9 @@ long kgsl_ioctl_gpuobj_alloc(struct kgsl_device_private *dev_priv,
 	param->flags = entry->memdesc.flags;
 	param->mmapsize = kgsl_memdesc_footprint(&entry->memdesc);
 	param->id = entry->id;
-	
+
 	/* put the extra refcount for kgsl_mem_entry_create() */
 	kgsl_mem_entry_put(entry);
-
 	return 0;
 }
 
@@ -3161,10 +3157,9 @@ long kgsl_ioctl_gpumem_alloc(struct kgsl_device_private *dev_priv,
 	param->gpuaddr = (unsigned long) entry->memdesc.gpuaddr;
 	param->size = (size_t) entry->memdesc.size;
 	param->flags = (unsigned int) entry->memdesc.flags;
-	
+
 	/* put the extra refcount for kgsl_mem_entry_create() */
 	kgsl_mem_entry_put(entry);
-
 	return 0;
 }
 
@@ -3187,10 +3182,9 @@ long kgsl_ioctl_gpumem_alloc_id(struct kgsl_device_private *dev_priv,
 	param->size = (size_t) entry->memdesc.size;
 	param->mmapsize = (size_t) kgsl_memdesc_footprint(&entry->memdesc);
 	param->gpuaddr = (unsigned long) entry->memdesc.gpuaddr;
-	
+
 	/* put the extra refcount for kgsl_mem_entry_create() */
 	kgsl_mem_entry_put(entry);
-
 	return 0;
 }
 
@@ -3523,7 +3517,8 @@ static unsigned long _gpu_set_svm_region(struct kgsl_process_private *private,
 	}
 
 	kgsl_memfree_purge(private->pagetable, entry->memdesc.gpuaddr,
-		entry->memdesc.size);	
+		entry->memdesc.size);
+
 	return addr;
 }
 

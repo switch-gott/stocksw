@@ -602,21 +602,16 @@ int a5xx_preemption_init(struct adreno_device *adreno_dev)
 		adreno_dev->num_ringbuffers *
 		A5XX_CP_CTXRECORD_PREEMPTION_COUNTER_SIZE, 0, 0,
 		"preemption_counters");
-
-	if (ret) {
-		printk("kgsl %s %d result:%d from kgsl_allocate_global()\n", __func__, __LINE__, ret);
+	if (ret)
 		goto err;
-	}
 
 	addr = preempt->counters.gpuaddr;
 
 	/* Allocate mem for storing preemption switch record */
 	FOR_EACH_RINGBUFFER(adreno_dev, rb, i) {
 		ret = a5xx_preemption_ringbuffer_init(adreno_dev, rb, addr);
-		if (ret) {
-			printk("kgsl %s %d result:%d from kgsl_allocate_global()\n", __func__, __LINE__, ret);
+		if (ret)
 			goto err;
-		}
 
 		addr += A5XX_CP_CTXRECORD_PREEMPTION_COUNTER_SIZE;
 	}
