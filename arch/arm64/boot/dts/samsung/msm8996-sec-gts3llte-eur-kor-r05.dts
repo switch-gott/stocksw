@@ -12599,7 +12599,7 @@
 			qcom,base-leakage-coefficient = <0x22>;
 			qcom,lm-limit = <0x1770>;
 			qcom,initial-pwrlevel = <0x2>;
-			qcom,idle-timeout = <0x50>;
+			qcom,idle-timeout = <0x40>;
 			qcom,deep-nap-timeout = <0x14>;
 			qcom,strtstp-sleepwake;
 			qcom,highest-bank-bit = <0xf>;
@@ -20389,7 +20389,7 @@
 					dev = "/dev/block/platform/soc/7464900.sdhci/by-name/system";
 					type = "ext4";
 					mnt_flags = "ro,errors=panic,noload";
-					fsmgr_flags = "wait,verify";
+					fsmgr_flags = "wait";
 					status = "ok";
 				};
 			};
