@@ -132,7 +132,7 @@ static struct device_attribute sec_battery_attrs[] = {
 	SEC_BATTERY_ATTR(wc_op_freq),
 	SEC_BATTERY_ATTR(wc_cmd_info),
 	SEC_BATTERY_ATTR(batt_tune_float_voltage),
-	SEC_BATTERY_ATTR(batt_tune_intput_charge_current),
+	SEC_BATTERY_ATTR(batt_tune_input_charge_current),
 	SEC_BATTERY_ATTR(batt_tune_fast_charge_current),
 	SEC_BATTERY_ATTR(batt_tune_ui_term_cur_1st),
 	SEC_BATTERY_ATTR(batt_tune_ui_term_cur_2nd),
@@ -481,7 +481,7 @@ static void sec_bat_get_charging_current_by_siop(struct sec_battery_info *batter
 static int sec_bat_check_mix_temp(struct sec_battery_info *battery, int input_current)
 {
 	unsigned int float_vol;
-	
+
 	if (battery->pdata->chg_temp_check && battery->siop_level >= 100 && is_not_wireless_type(battery->cable_type)) {
 		if ((!battery->mix_limit &&
 				(battery->temperature > battery->pdata->mix_high_temp) &&
@@ -603,7 +603,7 @@ static void set_vbus_volt(struct sec_battery_info *battery, int state)
 			muic_check_afc_state(VBUS_9V);
 			/* set current event */
 			sec_bat_set_current_event(battery, SEC_BAT_CURRENT_EVENT_AFC, 0);
-		}		
+		}
 	}else{
 		if (is_hv_wire_type(battery->cable_type) &&
 			battery->status == POWER_SUPPLY_STATUS_CHARGING) {

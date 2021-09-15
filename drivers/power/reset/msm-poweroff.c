@@ -111,7 +111,7 @@ struct reset_attribute {
 
 module_param_call(download_mode, dload_set, param_get_int,
 			&download_mode, 0644);
-			
+
 static int panic_prep_restart(struct notifier_block *this,
 			      unsigned long event, void *ptr)
 {
@@ -166,7 +166,7 @@ void set_dload_mode(int on)
 #ifdef CONFIG_SEC_DEBUG
 	pr_err("set_dload_mode <%d> ( %x )\n", on,
 			(unsigned int) CALLER_ADDR0);
-#endif	
+#endif
 }
 
 static bool get_dload_mode(void)
