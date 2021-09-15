@@ -223,7 +223,7 @@ static void process_command_deregistration(uint8_t *buf, uint32_t len,
 	read_len += header_len - (2 * sizeof(uint32_t));
 
 	if (dereg->count_entries == 0) {
-		pr_err("diag: In %s, received reg tbl with no entries\n",
+		pr_debug("diag: In %s, received reg tbl with no entries\n",
 			 __func__);
 		return;
 	}
